@@ -124,7 +124,7 @@ def graph_relat_50(dic_graph, r50):
 
 ### para fazer histograma de chunks 
 
-def chunks (num_chunks,phrases, dic_relat):
+def chunks (num_chunks,phrases, dic_lines):
     dic_chunks={}                      #key é o número do chunck, valor é o conjunto de linhas(lista de listas)
     d = phrases/num_chunks       
     i = 1
@@ -132,8 +132,8 @@ def chunks (num_chunks,phrases, dic_relat):
     while chunk <= num_chunks:
             while i <= d*chunk:  
                 if chunk not in dic_chunks:
-                    dic_chunks[chunk]=dic_relat[i]
-                else: dic_chunks[chunk].append(dic_relat[i])
+                    dic_chunks[chunk]=dic_lines[i]
+                else: dic_chunks[chunk].append(dic_lines[i])
                 i += 1
             chunk += 1
             
@@ -196,7 +196,6 @@ if __name__ == '__main__':
 #    harry = open_file('frei.txt')
 #    print(harry)
     phrases = num_phrases(harry)
-    chunk = chunks(phrases, harry)
     np = all_lines_with_NP (harry)
     names_NP = all_NP(np)
 #    print(names_NP)
@@ -215,7 +214,7 @@ if __name__ == '__main__':
 #    print(dic_graph)
     graph = MyGraph(graph_50)
     graph.print_graph()             #grafo de relações!!!
-    dic_chunks = chunks(60,phrases, dic_lines)
+    dic_chunks = chunks(60, phrases, dic_lines)
 #    print(dic_chunks)
     freq = freq_per_NP('Harry', dic_chunks)    #freq = freq_per_NP('Dudley', dic_chunks)
 #    print(freq)
